@@ -1,0 +1,41 @@
+package fr.usmb.demo.m1.expr.arbre;
+
+import java.util.Set;
+
+public class MoinsUnaire implements Noeud {
+    private Noeud expression;
+
+    public MoinsUnaire(Noeud expression) {
+        this.expression = expression;
+    }
+
+    @Override
+    public int getValeur() {
+        return -expression.getValeur();
+    }
+
+    @Override
+    public void display(int level) {
+        for (int i = 0; i < level; i++) System.out.print("  ");
+        System.out.println("- (unaire)");
+        expression.display(level + 1);
+    }
+
+    @Override
+    public String toPrefixString() {
+        return "(- " + expression.toPrefixString() + ")";
+    }
+
+    @Override
+    public String genererCode() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(expression.genererCode());
+        sb.append("\t neg eax\n");
+        return sb.toString();
+    }
+
+    @Override
+    public void collecterVariables(Set<String> variables) {
+        expression.collecterVariables(variables);
+    }
+}
