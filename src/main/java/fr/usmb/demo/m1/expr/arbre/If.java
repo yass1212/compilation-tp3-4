@@ -42,7 +42,26 @@ public class If implements Noeud {
 
     @Override
     public String genererCode() {
-        return "";
+        // Génère le code d'un if-then-else.
+        //
+        // Structure assembleur :
+        //   <condition> → eax
+        //   jz else_N          ; si condition == 0 → branche sinon
+        //   <branche alors>
+        //   jmp fin_if_N
+        //   else_N:
+        //   <branche sinon>
+        //   fin_if_N:
+        int id = LabelCounter.prochain();
+        StringBuilder sb = new StringBuilder();
+        sb.append(condition.genererCode());                  // eax ← condition (0 ou 1)
+        sb.append("\t jz else_").append(id).append("\n");
+        sb.append(alors.genererCode());                      // branche THEN
+        sb.append("\t jmp fin_if_").append(id).append("\n");
+        sb.append("else_").append(id).append(":\n");
+        sb.append(sinon.genererCode());                      // branche ELSE
+        sb.append("fin_if_").append(id).append(":\n");
+        return sb.toString();
     }
 
     @Override

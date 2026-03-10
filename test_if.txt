@@ -1,0 +1,2 @@
+let x = 5;
+if (3 < x) then output 1 else output 0 .

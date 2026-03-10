@@ -28,7 +28,17 @@ public class Not implements Noeud {
 
     @Override
     public String genererCode() {
-        return "";
+        // Évalue NOT expr → eax = 1 si expr==0, sinon 0.
+        int id = LabelCounter.prochain();
+        StringBuilder sb = new StringBuilder();
+        sb.append(expression.genererCode());                // eax ← expr
+        sb.append("\t jz vrai_not_").append(id).append("\n");
+        sb.append("\t mov eax, 0\n");
+        sb.append("\t jmp fin_not_").append(id).append("\n");
+        sb.append("vrai_not_").append(id).append(":\n");
+        sb.append("\t mov eax, 1\n");
+        sb.append("fin_not_").append(id).append(":\n");
+        return sb.toString();
     }
 
     @Override

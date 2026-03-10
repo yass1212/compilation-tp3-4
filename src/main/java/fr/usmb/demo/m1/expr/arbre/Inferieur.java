@@ -31,7 +31,22 @@ public class Inferieur implements Noeud {
 
     @Override
     public String genererCode() {
-        return "";
+        // Évalue gauche < droite  → eax = 1 si vrai, 0 sinon.
+        // Technique : on calcule gbx-eax (sub ebx,eax), les flags CPU indiquent <
+        int id = LabelCounter.prochain();
+        StringBuilder sb = new StringBuilder();
+        sb.append(gauche.genererCode());                    // eax ← gauche
+        sb.append("\t push eax\n");
+        sb.append(droite.genererCode());                    // eax ← droite
+        sb.append("\t pop ebx\n");                          // ebx ← gauche
+        sb.append("\t sub ebx, eax\n");                     // flags ← gauche - droite
+        sb.append("\t jl vrai_jl_").append(id).append("\n");
+        sb.append("\t mov eax, 0\n");
+        sb.append("\t jmp fin_jl_").append(id).append("\n");
+        sb.append("vrai_jl_").append(id).append(":\n");
+        sb.append("\t mov eax, 1\n");
+        sb.append("fin_jl_").append(id).append(":\n");
+        return sb.toString();
     }
 
     @Override
