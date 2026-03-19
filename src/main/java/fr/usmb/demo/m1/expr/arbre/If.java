@@ -46,6 +46,7 @@ public class If implements Noeud {
         //
         // Structure assembleur :
         //   <condition> → eax
+        //   and eax, eax       ; positionne les drapeaux (ZF=1 si eax=0)
         //   jz else_N          ; si condition == 0 → branche sinon
         //   <branche alors>
         //   jmp fin_if_N
@@ -54,8 +55,9 @@ public class If implements Noeud {
         //   fin_if_N:
         int id = LabelCounter.prochain();
         StringBuilder sb = new StringBuilder();
-        sb.append(condition.genererCode());                  // eax ← condition (0 ou 1)
-        sb.append("\t jz else_").append(id).append("\n");
+        sb.append(condition.genererCode());                  // On évalue la condition -> le résultat sera dans eax
+        sb.append("\t sub eax, 0\n");                        // s'assure que les flags sont à jour (ZF=1 si eax=0)
+        sb.append("\t jz else_").append(id).append("\n");    // Si eax vaut 0 (condition fausse), on saute vers "else"
         sb.append(alors.genererCode());                      // branche THEN
         sb.append("\t jmp fin_if_").append(id).append("\n");
         sb.append("else_").append(id).append(":\n");

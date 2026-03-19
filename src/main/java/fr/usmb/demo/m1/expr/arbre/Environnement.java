@@ -17,4 +17,8 @@ public class Environnement {
         }
         return variables.get(nom);
     }
+
+    public static void clear() {
+        variables.clear();
+    }
 }

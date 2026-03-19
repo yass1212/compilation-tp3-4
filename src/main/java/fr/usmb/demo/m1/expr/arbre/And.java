@@ -31,21 +31,25 @@ public class And implements Noeud {
 
     @Override
     public String genererCode() {
-        // Évalue gauche AND droite → eax = 1 (vrai) ou 0 (faux).
-        // and eax, ebx  ≠ 0 ssi les deux opérandes sont ≠ 0.
         int id = LabelCounter.prochain();
         StringBuilder sb = new StringBuilder();
-        sb.append(gauche.genererCode());                    // eax ← gauche
-        sb.append("\t push eax\n");
-        sb.append(droite.genererCode());                    // eax ← droite
-        sb.append("\t pop ebx\n");                          // ebx ← gauche
-        sb.append("\t and eax, ebx\n");                     // eax = gauche & droite (≠0 si les deux vrais)
-        sb.append("\t jnz vrai_and_").append(id).append("\n");
-        sb.append("\t mov eax, 0\n");
+        
+        sb.append(gauche.genererCode());                      // eax ← gauche
+        sb.append("\t sub eax, 0\n");                         // Astuce pour forcer la mise à jour des flags (ZF=1 si eax=0)
+        sb.append("\t jz faux_and_").append(id).append("\n"); // Évaluation opportuniste : si gauche est faux, on saute droite
+        
+        sb.append(droite.genererCode());                      // eax ← droite
+        sb.append("\t sub eax, 0\n");                         
+        sb.append("\t jz faux_and_").append(id).append("\n"); // Si droite est faux, le AND est faux
+        
+        sb.append("\t mov eax, 1\n");                         // Les deux sont vrais, le résultat final est vrai (1)
         sb.append("\t jmp fin_and_").append(id).append("\n");
-        sb.append("vrai_and_").append(id).append(":\n");
-        sb.append("\t mov eax, 1\n");
+        
+        sb.append("faux_and_").append(id).append(":\n");
+        sb.append("\t mov eax, 0\n");                         // Au moins un des deux était faux, le résultat est 0
+        
         sb.append("fin_and_").append(id).append(":\n");
+        
         return sb.toString();
     }
 
