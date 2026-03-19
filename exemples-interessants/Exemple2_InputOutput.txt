@@ -1,0 +1,3 @@
+let a = input;
+let double = a * 2;
+output double.

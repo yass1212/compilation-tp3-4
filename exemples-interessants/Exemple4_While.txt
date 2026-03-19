@@ -1,0 +1,5 @@
+let i = 3;
+while (0 < i) do (
+    output i;
+    let i = i - 1
+).
