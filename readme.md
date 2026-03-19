@@ -17,6 +17,10 @@ Voici comment le projet est structuré :
 - **`TestArbre.java`** : Permet de vérifier chaque opérateur séparément. Il s'assure que la logique de l'arbre est correcte en évaluant l'arbre en Java (via la fonction `getValeur()`).
 - **`TestMachineVirtuelle.java`** : Permet de vérifier la validité du code assembleur généré. Ce test va produire le code de chaque opérateur, l'exécuter dans la machine virtuelle fournie (`vm-0.9.jar`), et vérifier que le résultat final correspond bien au comportement attendu.
 
+
+<br/>
+
+
 ## Exercices
 
 ### Exercice 1
@@ -47,7 +51,7 @@ echo "12\n8" | java -jar vm-0.9.jar pgcd.asm 2>&1
 echo "15\n10" | java -jar vm-0.9.jar pgcd.asm 2>&1
 ```
 
-
+<br/>
 
 
 ## Exemples de code
@@ -87,7 +91,7 @@ java -jar vm-0.9.jar exemples-interessants/Exemple4_While.asm
 
 
 
-
+<br/>
 
 
 
@@ -111,7 +115,8 @@ Exécute du début à la fin un test prouvant que le court-circuit du `and` (la 
 
 
 
-
+<br/>
+<br/>
 
 
 
