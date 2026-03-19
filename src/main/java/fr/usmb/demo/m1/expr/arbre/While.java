@@ -49,13 +49,18 @@ public class While implements Noeud {
         //   fin_while_N:
         int id = LabelCounter.prochain();
         StringBuilder sb = new StringBuilder();
+        sb.append("\t mov eax, 0\n");
+        sb.append("\t push eax\n");                         // dernier = 0
         sb.append("debut_while_").append(id).append(":\n");
-        sb.append(condition.genererCode());                 // eax ← résultat de la condition (0 ou 1)
+        sb.append(condition.genererCode());                 // eax ← condition
         sb.append("\t sub eax, 0\n");                        // s'assure que les flags sont à jour (ZF=1 si eax=0)
         sb.append("\t jz fin_while_").append(id).append("\n");
-        sb.append(corps.genererCode());                     // corps de la boucle
+        sb.append("\t pop eax\n");                          // supprime l'ancien 'dernier'
+        sb.append(corps.genererCode());                     // corps de la boucle -> eax
+        sb.append("\t push eax\n");                         // consigne le nouveau 'dernier'
         sb.append("\t jmp debut_while_").append(id).append("\n");
         sb.append("fin_while_").append(id).append(":\n");
+        sb.append("\t pop eax\n");                          // on récupère 'dernier' dans eax comme résultat de l'ast
         return sb.toString();
     }
 

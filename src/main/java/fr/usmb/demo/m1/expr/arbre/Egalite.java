@@ -40,7 +40,7 @@ public class Egalite implements Noeud {
         sb.append(droite.genererCode());                    // eax ← droite
         sb.append("\t pop ebx\n");                          // ebx ← gauche
         sb.append("\t sub ebx, eax\n");                     // flags ← gauche - droite
-        sb.append("\t je vrai_je_").append(id).append("\n");
+        sb.append("\t jz vrai_je_").append(id).append("\n");
         sb.append("\t mov eax, 0\n");
         sb.append("\t jmp fin_je_").append(id).append("\n");
         sb.append("vrai_je_").append(id).append(":\n");

@@ -30,7 +30,10 @@ public class MoinsUnaire implements Noeud {
     public String genererCode() {
         StringBuilder sb = new StringBuilder();
         sb.append(expression.genererCode());
-        sb.append("\t neg eax\n");
+        sb.append("\t push eax\n");
+        sb.append("\t pop ebx\n");
+        sb.append("\t mov eax, 0\n");
+        sb.append("\t sub eax, ebx\n");
         return sb.toString();
     }
 
