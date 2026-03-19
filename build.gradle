@@ -69,3 +69,17 @@ pluginManager.withPlugin('eclipse'){
     // tasks to run when build automatically is enabled
     eclipse.autoBuildTasks([tasks.named('generateCup'), tasks.named('generateJflex')])
 }
+
+task testArbre(type: JavaExec) {
+    group = 'verification'
+    description = 'Lance les tests sur tous les fichiers .txt de test-arbre'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'fr.usmb.demo.m1.expr.TestArbre'
+}
+
+task testVM(type: JavaExec) {
+    group = 'verification'
+    description = 'Compile les fichiers .txt en ASM et les exécute sur la Machine Virtuelle'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'fr.usmb.demo.m1.expr.TestMachineVirtuelle'
+}

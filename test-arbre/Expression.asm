@@ -1,0 +1,6 @@
+DATA SEGMENT
+DATA ENDS
+CODE SEGMENT
+	 mov eax, 42
+	 out eax
+CODE ENDS
