@@ -14,8 +14,8 @@ Voici comment le projet est structuré :
   - `collecterVariables()` : Pour collecter les variables de l'opération.
   - `genererCode()` : Pour se traduire lui-même en instructions assembleur (ASM) pour la machine virtuelle.
 - **`Main.java`** : Définit le compilateur. Il lit un fichier `.txt`, lance la construction de l'arbre, l'affiche dans le terminal, et crée le fichier `.asm`.
-- **`TestArbre.java`** : Un script de test automatique qui vérifie si l'arbre est correctement construit et interprété (avec `getValeur()`).
-- **`TestMachineVirtuelle.java`** : Permet de vérifier que le code assembleur généré donne le bon résultat final une fois qu'il tourne dans la machine virtuelle.
+- **`TestArbre.java`** : Permet de vérifier chaque opérateur séparément. Il s'assure que la logique de l'arbre est correcte en évaluant l'arbre en Java (via la fonction `getValeur()`).
+- **`TestMachineVirtuelle.java`** : Permet de vérifier la validité du code assembleur généré. Ce test va produire le code de chaque opérateur, l'exécuter dans la machine virtuelle fournie (`vm-0.9.jar`), et vérifier que le résultat final correspond bien au comportement attendu.
 
 ## Exercices
 
