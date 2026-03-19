@@ -1,0 +1,76 @@
+> Task :generateCup UP-TO-DATE
+> Task :generateJflex UP-TO-DATE
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :testVM
+====================================================
+EXÉCUTION DES TESTS ASM DANS LA MACHINE VIRTUELLE
+====================================================
+Fichier                        | Attendu  | Obtenu   | Résultat
+--------------------------------------------------------------------
+Addition.txt                   | 15       | 15       | OK      
+And.txt                        | 0        | 0        | OK      
+And_00.txt                     | 0        | 0        | OK      
+And_01.txt                     | 0        | 0        | OK      
+And_10.txt                     | 0        | 0        | OK      
+And_11.txt                     | 1        | 1        | OK      
+And_Arbitrary.txt              | 1        | 1        | OK      
+And_NonZero.txt                | 1        | 1        | OK      
+And_ShortCircuit.txt           | 10       | 10       | OK      
+Division.txt                   | 5        | 5        | OK      
+Egalite.txt                    | 1        | 1        | OK      
+Egalite_Faux.txt               | 0        | 0        | OK      
+Egalite_Vrai.txt               | 1        | 1        | OK      
+Expression.txt                 | 42       | 42       | OK      
+If.txt                         | 10       | 10       | OK      
+If_False.txt                   | 20       | 20       | OK      
+If_True.txt                    | 10       | 10       | OK      
+Inferieur.txt                  | 1        | 1        | OK      
+InferieurEgal.txt              | 1        | 1        | OK      
+InferieurEgal_Faux.txt         | 0        | 0        | OK      
+InferieurEgal_Vrai_Egal.txt    | 1        | 1        | OK      
+InferieurEgal_Vrai_Inf.txt     | 1        | 1        | OK      
+Inferieur_Faux_Egal.txt        | 0        | 0        | OK      
+Inferieur_Faux_Sup.txt         | 0        | 0        | OK      
+Inferieur_Vrai.txt             | 1        | 1        | OK      
+Let.txt                        | 10       | 10       | OK      
+Modulo.txt                     | 1        | 1        | OK      
+MoinsUnaire.txt                | -5       | CRASH    | ÉCHEC SYNTAXE VM
+Multiplication.txt             | 6        | 6        | OK      
+Nil.txt                        | 0        | 0        | OK      
+Not.txt                        | 0        | 0        | OK      
+Not_0.txt                      | 1        | 1        | OK      
+Not_1.txt                      | 0        | 0        | OK      
+Or.txt                         | 1        | 1        | OK      
+Or_00.txt                      | 0        | 0        | OK      
+Or_01.txt                      | 1        | 1        | OK      
+Or_10.txt                      | 1        | 1        | OK      
+Or_11.txt                      | 1        | 1        | OK      
+Or_Arbitrary.txt               | 1        | 1        | OK      
+Or_NonZero.txt                 | 1        | 1        | OK      
+Or_ShortCircuit.txt            | 10       | 10       | OK      
+Output.txt                     | 10       | 10       | OK      
+Sequence.txt                   | 15       | 15       | OK      
+Soustraction.txt               | 5        | 5        | OK      
+Variable.txt                   | 42       | 42       | OK      
+While.txt                      | 10       | 10       | OK      
+--------------------------------------------------------------------
+RÉSUMÉ MACHINE VIRTUELLE :
+  PASSÉS  : 45
+  ÉCHECS  : 1
+  IGNORÉS : 2
+  TOTAL   : 48
+====================================================
+
+[Incubating] Problems report is available at: file:///Users/yass/Developer/semestre-8/compilation/tp3-4/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 6s
+4 actionable tasks: 1 executed, 3 up-to-date

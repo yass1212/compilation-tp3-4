@@ -151,7 +151,7 @@ public class TestMachineVirtuelle {
                     if (line.contains("Erreur de syntaxe") || line.contains("Exception")) {
                         syntaxError = true;
                     }
-                    if (line.startsWith(">>>>")) {
+                    if (line.startsWith(">>>>") && !line.contains("That's all")) {
                         // On prend le dernier match avant "That's all"
                         String val = line.substring(4).trim();
                         if (!val.isEmpty()) finalResult = val;

@@ -6,7 +6,7 @@ CODE SEGMENT
 	 mov eax, 3
 	 pop ebx
 	 sub ebx, eax
-	 je vrai_je_9
+	 jz vrai_je_9
 	 mov eax, 0
 	 jmp fin_je_9
 vrai_je_9:
